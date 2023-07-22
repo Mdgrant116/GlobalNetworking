@@ -28,7 +28,7 @@ public struct Post: Identifiable, Hashable, Codable {
     public var hasBeenRatedGlobal: Bool = false
     public var views: Int? = 0
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id = "post-id"
         case displayName = "display-name"
         case genre = "genre"
