@@ -191,7 +191,7 @@ public extension GlobalUser {
     
     static let janelleMonae = GlobalUser(
         id: "CQGayLAEsLZl2heSYVIhpgzJ6Bk2",
-        bio: "The one and only Arch Android",
+        bio: "The one and only Arch Android, live from Metropolis",
         dateCreated: nil,
         displayName: "Janelle_Monae",
         dues: 10,

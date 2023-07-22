@@ -20,6 +20,7 @@ public struct Article: Identifiable, Hashable, Codable {
     public let category: String?
     public let postId: String?
     public var articleImageUrl: URL?
+    public var articleImageUrlSecondary: URL?
     public var dateCreated: Timestamp?
     public var photoCredit: String?
     public var articleAuthor: String?
@@ -35,6 +36,7 @@ public struct Article: Identifiable, Hashable, Codable {
         case category = "category"
         case postId = "post-id"
         case articleImageUrl = "article-image-url"
+        case articleImageUrlSecondary = "article-image-url-secondary"
         case dateCreated = "date-created"
         case photoCredit = "photo-credit"
         case articleAuthor = "article-author"
@@ -52,6 +54,7 @@ public struct Article: Identifiable, Hashable, Codable {
         self.category = try container.decodeIfPresent(String.self, forKey: .category)
         self.postId = try container.decodeIfPresent(String.self, forKey: .postId)
         self.articleImageUrl = try container.decodeIfPresent(URL.self, forKey: .articleImageUrl)
+        self.articleImageUrlSecondary = try container.decodeIfPresent(URL.self, forKey: .articleImageUrlSecondary)
         self.dateCreated = try container.decodeIfPresent(Timestamp.self, forKey: .dateCreated)
         self.photoCredit = try container.decodeIfPresent(String.self, forKey: .photoCredit)
         self.articleAuthor = try container.decodeIfPresent(String.self, forKey: .articleAuthor)
@@ -68,6 +71,7 @@ public struct Article: Identifiable, Hashable, Codable {
         postId: String?,
         category: String?,
         articleImageUrl: URL?,
+        articleImageUrlSecondary: URL?,
         dateCreated: Timestamp,
         photoCredit: String,
         articleAuthor: String
@@ -81,6 +85,7 @@ public struct Article: Identifiable, Hashable, Codable {
         self.category = category
         self.postId = postId
         self.articleImageUrl = articleImageUrl
+        self.articleImageUrlSecondary = articleImageUrlSecondary
         self.dateCreated = dateCreated
         self.photoCredit = photoCredit
         self.articleAuthor = articleAuthor
@@ -99,6 +104,7 @@ public extension Article {
         postId: nil,
         category: "Hip Hop",
         articleImageUrl: URL(string: "https://media.resources.festicket.com/www/artists/Janelle.jpg"),
+        articleImageUrlSecondary: nil,
         dateCreated: Timestamp(date: Date()),
         photoCredit: "Luke S. Stalker",
         articleAuthor: "Fresh"
@@ -111,9 +117,10 @@ public extension Article {
         paragraph02: "While Phenomenal is a departure from the sound we're used to from Janelle, fans of Arch Android will definitely notices hints of the Janelle they love throughout this piece. Phenomenal moves from verse to verse with a natural flow that will surprise you when it's over, because it's definitely not a short song.",
         paragraph03: "The most inspiring thing about this new iteration of Janelle Monae is that you can hear she's making music that gives her more joy than anything she's done before, which elevates the project more than any technical aspect of music ever could.",
         articleType: 0,
-        postId: nil,
+        postId: "H1qrs2zVmxt6Qt6snb5z",
         category: "Hip Hop",
         articleImageUrl: URL(string: "https://media.resources.festicket.com/www/artists/Janelle.jpg"),
+        articleImageUrlSecondary: URL(string: "https://npr.brightspotcdn.com/dims4/default/084dc1f/2147483647/strip/true/crop/3647x2736+0+0/resize/880x660!/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2023%2F06%2F07%2Fmisc_23_019_jm_dsp_0269-3-0-3ff153507640790e5104733cf18e1fcd3b3bde8c.jpg"),
         dateCreated: Timestamp(date: Date()),
         photoCredit: "Luke S. Stalker",
         articleAuthor: "Fresh"
