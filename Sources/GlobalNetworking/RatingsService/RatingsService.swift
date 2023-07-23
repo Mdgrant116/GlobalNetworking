@@ -142,17 +142,3 @@ extension RatingsService {
         }
     }
 }
-
-struct DatabasePathConstants {
-    static let COLLECTION_USERS = Firestore.firestore().collection("users")
-    static let COLLECTION_COUNTDOWN_POSTS = Firestore.firestore().collection("countdown-posts")
-    static let COLLECTION_POSTS = Firestore.firestore().collection("posts")
-    static let COLLECTION_GLOBAL_CONFIDENTIAL = Firestore.firestore().collection("global-confidential")
-    static let COLLECTION_GLOBAL_WORLD_LIVE = Firestore.firestore().collection("global-world-live")
-    static let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
-    static let COLLECTION_SUPPORTERS = Firestore.firestore().collection("supporters")
-    static let COLLECTION_SUPPORTING = Firestore.firestore().collection("supporting")
-    static let COLLECTION_NOTIFICATIONS = Firestore.firestore().collection("notifications")
-    static let COLLECTION_AllUsernames = Firestore.firestore().collection("all-usernames")
-}
-
