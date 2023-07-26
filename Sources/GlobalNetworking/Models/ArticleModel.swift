@@ -7,63 +7,79 @@
 
 import Foundation
 
-struct ArticleModel {
+public struct ArticleModel {
     
-    let article: Article
+    /// The raw unaltered article.
+    public let article: Article
     
-    var id: String {
+    /// The article Id.
+    public var id: String {
         return article.id
     }
     
-    var articleTitle: String {
+    /// The article title.
+    public var articleTitle: String {
         return article.title.lowercased().capitalized
     }
     
-    var articleAuthor: String {
+    /// The article author.
+    public var articleAuthor: String {
         return article.articleAuthor?.capitalized ?? ""
     }
     
-    var articleSubtitle: String {
+    /// The article author and date formatted.
+    public var articleSubtitle: String {
         return "\(articleAuthor) • \(articleDate)"
     }
     
-    var articlePhotoCredit: String {
+    /// The photo credit for the articles image.
+    public var articlePhotoCredit: String {
         return article.photoCredit?.capitalized ?? ""
     }
     
-    var paragraph01: String {
+    /// The first paragraph of the article.
+    public var paragraph01: String {
         return article.articleText
     }
     
-    var paragraph02: String? {
+    /// The second paragraph of the article.
+    public var paragraph02: String? {
         return article.paragraph02
     }
     
-    var paragraph03: String? {
+    /// The third paragraph of the article.
+    public var paragraph03: String? {
         return article.paragraph03
     }
     
+    /// The formatted date of the article.
     var articleDate: String {
         return article.dateCreated?.dateValue().formattedTimeString() ?? ""
     }
     
-    var articleType: Int {
+    /// The type of article, 0: News, 1: Review.
+    public var articleType: Int {
         return article.articleType
     }
     
-    var articleImageURL: URL? {
+    /// The Url for the articles primary image.
+    public var articleImageURL: URL? {
         return article.articleImageUrl
     }
     
-    var articleImageURLSecondary: URL? {
+    /// The Url for the articles secondary image.
+    public var articleImageURLSecondary: URL? {
         return article.articleImageUrlSecondary
     }
     
-    var postId: String? {
+    /// The Id for the reviews Post.
+    public var postId: String? {
         return article.postId
     }
     
-    init(article: Article) {
+    /// Init.
+    /// - Parameter article: The unaltered article.
+    public init(article: Article) {
         self.article = article
     }
 }
