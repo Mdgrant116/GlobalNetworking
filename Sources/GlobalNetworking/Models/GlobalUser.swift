@@ -231,8 +231,8 @@ public struct DatabaseUserField {
     static let providerID = "provider-id"
     static let provider = "provider"
     static let userID = "user-id"
-    static let blockedByUsers = "blocked-by-users"
-    static let blockedUsers = "blocked-users"
+    public static let blockedByUsers = "blocked-by-users"
+    public static let blockedUsers = "blocked-users"
     
     
     static let bio = "bio"
