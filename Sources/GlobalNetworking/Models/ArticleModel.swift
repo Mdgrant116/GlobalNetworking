@@ -29,7 +29,11 @@ public struct ArticleModel {
     
     /// The article author and date formatted.
     public var articleSubtitle: String {
-        return "\(articleAuthor) • \(articleDate)"
+        if let articleCategory = articleCategory {
+            return "\(articleCategory) • \(articleAuthor) • \(articleDate)"
+        } else {
+            return "\(articleAuthor) • \(articleDate)"
+        }
     }
     
     /// The photo credit for the articles image.
@@ -60,6 +64,11 @@ public struct ArticleModel {
     /// The type of article, 0: News, 1: Review.
     public var articleType: Int {
         return article.articleType
+    }
+    
+    /// The articles category.
+    public var articleCategory: String? {
+        return article.category
     }
     
     /// The Url for the articles primary image.

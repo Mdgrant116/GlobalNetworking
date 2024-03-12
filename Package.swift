@@ -14,6 +14,7 @@ let package = Package(
             targets: ["GlobalNetworking"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/Mdgrant116/FreshLogging", branch: "master"),
         .package(url: "https://github.com/Mdgrant116/FreshNetworking", branch: "master"),
     ],
     targets: [
@@ -22,6 +23,7 @@ let package = Package(
         .target(
             name: "GlobalNetworking",
             dependencies: [
+                .product(name: "FreshLogging", package: "FreshLogging"),
                 .product(name: "FreshNetworking", package: "FreshNetworking"),
             ]),
         .testTarget(

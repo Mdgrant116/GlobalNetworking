@@ -98,7 +98,7 @@ public extension Article {
         id: "sjdhfshJKHKjh",
         title: "Sza spotted lurking with Fresh in Grand Rapids",
         articleText: "Did they fuck? Sources close to the two say yes, they sure the fuck did HHHAANNNNNNN",
-        paragraph02: nil,
+        paragraph02: "But in all seriousness, I need to type a longer paragraph for testing purposes, so lets get down to business, I dont have no time to fool around, what is this.",
         paragraph03: nil,
         articleType: 0,
         postId: nil,
@@ -121,6 +121,22 @@ public extension Article {
         category: "Hip Hop",
         articleImageUrl: URL(string: "https://media.resources.festicket.com/www/artists/Janelle.jpg"),
         articleImageUrlSecondary: URL(string: "https://npr.brightspotcdn.com/dims4/default/084dc1f/2147483647/strip/true/crop/3647x2736+0+0/resize/880x660!/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2023%2F06%2F07%2Fmisc_23_019_jm_dsp_0269-3-0-3ff153507640790e5104733cf18e1fcd3b3bde8c.jpg"),
+        dateCreated: Timestamp(date: Date()),
+        photoCredit: "Luke S. Stalker",
+        articleAuthor: "Fresh"
+    )
+    
+    static let drakeMonaeArticle = Article(
+        id: "sjdhfsh116JKHKjh",
+        title: "Cannonball, A Look Back",
+        articleText: "It’s 2008, back when mixtapes were a proving ground for an artist. Back when sites like Datpiff were still relevant instead of a breeding ground for old heads who hate any rapper born after 1980. Back when mixtapes actually gave you new songs instead of just being a collection of songs you’ve already heard. Heartbreak Drake Vol 3 just dropped.",
+        paragraph02: "As you go through the track list, you see many songs you’ve heard before, but two songs stand out because you may have never seen the featured artists name before. Colin Munroe, and the two songs you’re about to be bless with is Runaway Girl, and Cannonball.",
+        paragraph03: "I hope you all join me in giving Cannon Ball a listen in remembrance of one of the original Rude Boy Sad Boi anthems. Pass my Mosleys it’d all so bright, and I’m the result of when it all goes right.",
+        articleType: 0,
+        postId: "H1qrs2zVmxt6Qt6snb5z",
+        category: "Hip Hop",
+        articleImageUrl: URL(string: "https://coverartarchive.org/release/7260bf0b-c088-44c8-a49b-3ace22dafc60/2011119670.jpg"),
+        articleImageUrlSecondary: URL(string: "https://is2-ssl.mzstatic.com/image/thumb/Music116/v4/93/31/bd/9331bda4-7e19-dc80-64f8-a81db83ba8eb/196292866957.jpg/1200x1200bb.jpg"),
         dateCreated: Timestamp(date: Date()),
         photoCredit: "Luke S. Stalker",
         articleAuthor: "Fresh"

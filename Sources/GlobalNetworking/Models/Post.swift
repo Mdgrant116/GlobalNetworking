@@ -179,7 +179,7 @@ struct DatabasePostField {
     static let releaseDate = "release-date"
 }
 
-enum Genres: String, CaseIterable, Identifiable {
+enum Genres: String, CaseIterable, Identifiable, Equatable {
     case hipHop = "Hip Hop"
     case rb = "R&B"
     case pop = "Pop"

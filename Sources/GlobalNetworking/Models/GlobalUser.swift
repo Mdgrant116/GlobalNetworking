@@ -17,6 +17,8 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
     public var bio: String?
     /// Date the user joined GlobalWorld.
     public  var dateCreated: Timestamp?
+    /// The name of the user.
+    public var name: String
     /// The display name for the user that everyone will view.
     public  var displayName: String
     /// The amount of Dues the user has.
@@ -35,11 +37,14 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
     public  var socialLink02: String?
     /// The third social link provided by the user.
     public  var socialLink03: String?
+    /// Determines if the user has been classified Global.
+    public var isGlobalUser: Bool?
     
    public enum CodingKeys: String, CodingKey {
         case id = "id"
         case bio = "bio"
         case dateCreated = "date-created"
+        case name = "name"
         case displayName = "display-name"
         case dues = "dues"
         case genre = "genre"
@@ -49,12 +54,14 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         case socialLink01 = "social-link-01"
         case socialLink02 = "social-link-02"
         case socialLink03 = "social-link-03"
+        case isGlobalUser = "is-global-user"
     }
     
     public init(
         id: String,
         bio: String?,
         dateCreated: Timestamp?,
+        name: String,
         displayName: String,
         dues: Int,
         genre: String,
@@ -63,11 +70,13 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         pushIdToken: String?,
         socialLink01: String?,
         socialLink02: String?,
-        socialLink03: String?
+        socialLink03: String?,
+        isGlobalUser: Bool?
     ) {
         self.id = id
         self.bio = bio
         self.dateCreated = dateCreated
+        self.name = name
         self.displayName = displayName
         self.dues = dues
         self.genre = genre
@@ -77,6 +86,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         self.socialLink01 = socialLink01
         self.socialLink02 = socialLink02
         self.socialLink03 = socialLink03
+        self.isGlobalUser = isGlobalUser
     }
     
     public init(from decoder: Decoder) throws {
@@ -84,6 +94,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         self.id = try container.decode(String.self, forKey: .id)
         self.bio = try container.decodeIfPresent(String.self, forKey: .bio)
         self.dateCreated = try container.decodeIfPresent(Timestamp.self, forKey: .dateCreated)
+        self.name = try container.decode(String.self, forKey: .name)
         self.displayName = try container.decode(String.self, forKey: .displayName)
         self.dues = try container.decode(Int.self, forKey: .dues)
         self.genre = try container.decode(String.self, forKey: .genre)
@@ -93,10 +104,12 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         self.socialLink01 = try container.decodeIfPresent(String.self, forKey: .socialLink01)
         self.socialLink02 = try container.decodeIfPresent(String.self, forKey: .socialLink02)
         self.socialLink03 = try container.decodeIfPresent(String.self, forKey: .socialLink03)
+        self.isGlobalUser = try container.decodeIfPresent(Bool.self, forKey: .isGlobalUser)
     }
     
     public init(dictionary: [String: Any]) {
         self.id = dictionary[DatabaseUserField.userID] as? String ?? ""
+        self.name = dictionary[DatabaseUserField.name] as? String ?? ""
         self.displayName = dictionary[DatabaseUserField.displayName] as? String ?? ""
         self.pushIDToken = dictionary[DatabaseUserField.pushID] as? String ?? ""
         self.genre = dictionary[DatabaseUserField.mainGenre] as? String ?? ""
@@ -117,6 +130,7 @@ public extension GlobalUser {
         id: String = "874jHkJjsf934l",
         bio: String? = "This is a bio",
         dateCreated: Timestamp? = Timestamp(date: Date()),
+        name: String = "Test Name",
         displayName: String = "Test",
         dues: Int = 116,
         genre: String = "Hip Hop",
@@ -125,13 +139,15 @@ public extension GlobalUser {
         pushIdToken: String? = "8347344385743879",
         socialLink01: String? = "https://www.keepitfreshios.com",
         socialLink02: String? = "https://www.globalworld.com",
-        socialLink03: String? = "https://www.apple.com"
+        socialLink03: String? = "https://www.apple.com",
+        isGlobalUser: Bool? = false
         
     ) -> GlobalUser {
         return GlobalUser(
             id: id,
             bio: bio,
             dateCreated: dateCreated,
+            name: name,
             displayName: displayName,
             dues: dues,
             genre: genre,
@@ -140,14 +156,16 @@ public extension GlobalUser {
             pushIdToken: pushIdToken,
             socialLink01: socialLink01,
             socialLink02: socialLink02,
-            socialLink03: socialLink03
+            socialLink03: socialLink03,
+            isGlobalUser: isGlobalUser
         )
     }
     
     static let fresh = GlobalUser(
         id: "CQGayLAEsLZl2heSYVIhpgzJ6Bk2",
         bio: "Creator of the Global World app",
-        dateCreated: nil,
+        dateCreated: nil, 
+        name: "Michael",
         displayName: "fresh",
         dues: 10,
         genre: "Hip Hop",
@@ -156,13 +174,15 @@ public extension GlobalUser {
         pushIdToken: nil,
         socialLink01: nil,
         socialLink02: nil,
-        socialLink03: nil
+        socialLink03: nil, 
+        isGlobalUser: true
     )
     
     static let jolzywel = GlobalUser(
         id: "yWhkuh1TYadT9VixrioUheRHyRn2",
         bio: "His shot at the princess",
         dateCreated: nil,
+        name: "Juell",
         displayName: "jolzywel",
         dues: 0,
         genre: "Hip Hop",
@@ -171,13 +191,15 @@ public extension GlobalUser {
         pushIdToken: nil,
         socialLink01: nil,
         socialLink02: nil,
-        socialLink03: nil
+        socialLink03: nil,
+        isGlobalUser: true
     )
     
     static let afterPxrty = GlobalUser(
         id: "JqMq62mXCGQ7r679BPZkCbzkgZz1",
         bio: nil,
         dateCreated: nil,
+        name: "Rick",
         displayName: "afterpxrty",
         dues: 0,
         genre: "Hip Hop",
@@ -186,13 +208,15 @@ public extension GlobalUser {
         pushIdToken: nil,
         socialLink01: "https://www.globalMoneyWorld.com",
         socialLink02: nil,
-        socialLink03: nil
+        socialLink03: nil,
+        isGlobalUser: true
     )
     
     static let janelleMonae = GlobalUser(
         id: "CQGayLAEsLZl2heSYVIhpgzJ6Bk2",
         bio: "The one and only Arch Android, live from Metropolis",
         dateCreated: nil,
+        name: "Janelle",
         displayName: "Janelle_Monae",
         dues: 10,
         genre: "Pop",
@@ -201,13 +225,15 @@ public extension GlobalUser {
         pushIdToken: nil,
         socialLink01: nil,
         socialLink02: nil,
-        socialLink03: nil
+        socialLink03: nil,
+        isGlobalUser: true
     )
     
     static func empty(id: String) -> GlobalUser {
         GlobalUser(id: id,
              bio: nil,
              dateCreated: nil,
+             name: "",
              displayName: "",
              dues: 0,
              genre: "",
@@ -216,7 +242,8 @@ public extension GlobalUser {
              pushIdToken: nil,
              socialLink01: nil,
              socialLink02: nil,
-             socialLink03: nil
+             socialLink03: nil,
+             isGlobalUser: true
         )
     }
 }
