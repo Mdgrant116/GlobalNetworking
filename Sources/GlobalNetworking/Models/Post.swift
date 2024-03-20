@@ -13,6 +13,7 @@ public struct Post: Identifiable, Hashable, Codable {
     public let id: String
     public var displayName: String
     public var genre: String
+    public var subGenre: String?
     public var songTitle: String
     public var songDescription: String?
     public var locals: Int
@@ -32,6 +33,7 @@ public struct Post: Identifiable, Hashable, Codable {
         case id = "post-id"
         case displayName = "display-name"
         case genre = "genre"
+        case subGenre = "sub-genre"
         case songTitle = "song-title"
         case songDescription = "song-description"
         case locals = "locals"
@@ -53,6 +55,7 @@ public struct Post: Identifiable, Hashable, Codable {
         self.id = try container.decode(String.self, forKey: .id)
         self.displayName = try container.decode(String.self, forKey: .displayName)
         self.genre = try container.decode(String.self, forKey: .genre)
+       self.subGenre = try container.decodeIfPresent(String.self, forKey: .subGenre)
         self.songTitle = try container.decode(String.self, forKey: .songTitle)
         self.songDescription = try container.decodeIfPresent(String.self, forKey: .songDescription)
         self.locals = try container.decode(Int.self, forKey: .locals)
@@ -73,6 +76,7 @@ public struct Post: Identifiable, Hashable, Codable {
         id: String,
         displayName: String,
         genre: String,
+        subGenre: String? = nil,
         songTitle: String,
         songDescription: String? = nil,
         locals: Int,

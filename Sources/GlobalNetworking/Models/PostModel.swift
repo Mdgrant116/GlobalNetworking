@@ -40,7 +40,11 @@ public class PostModel: ObservableObject {
     }
     
     public var headerDescription: String {
-        return "\(post.genre) •  \(post.dateCreated.dateValue().formattedTimeString()) "
+        if let subGenre = post.subGenre {
+            return "\(post.genre) • \(subGenre) • \(post.dateCreated.dateValue().formattedTimeString())"
+        } else {
+            return "\(post.genre) •  \(post.dateCreated.dateValue().formattedTimeString())"
+        }
     }
     
     public var postViews: String {
