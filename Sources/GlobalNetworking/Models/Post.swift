@@ -22,11 +22,6 @@ public struct Post: Identifiable, Hashable, Codable {
     public var songURL: String
     public var userID: String
     public var dateCreated: Timestamp
-    public var releaseDate: Int?
-    public var ratedByUser: Bool = false
-    public var hasBeenRatedLocal: Bool = false
-    public var hasBeenRatedNational: Bool = false
-    public var hasBeenRatedGlobal: Bool = false
     public var views: Int? = 0
     public var customStartTime: Double?
     public var feedbackDisabled: Bool
@@ -45,13 +40,8 @@ public struct Post: Identifiable, Hashable, Codable {
         case songURL = "song-url"
         case userID = "user-id"
         case dateCreated = "date-created"
-        case releaseDate = "release-date"
         case customStartTime = "custom-start-time"
         case feedbackDisabled = "feedback-disabled"
-        case ratedByUser
-        case hasBeenRatedLocal
-        case hasBeenRatedNational
-        case hasBeenRatedGlobal
         case views = "views"
         case isExplicit = "is-explicit"
     }
@@ -70,11 +60,6 @@ public struct Post: Identifiable, Hashable, Codable {
         self.songURL = try container.decode(String.self, forKey: .songURL)
         self.userID = try container.decode(String.self, forKey: .userID)
         self.dateCreated = try container.decode(Timestamp.self, forKey: .dateCreated)
-        self.releaseDate = try container.decodeIfPresent(Int.self, forKey: .releaseDate)
-        self.ratedByUser = try container.decodeIfPresent(Bool.self, forKey: .ratedByUser) ?? false
-        self.hasBeenRatedLocal = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedLocal) ?? false
-        self.hasBeenRatedNational = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedNational) ?? false
-        self.hasBeenRatedGlobal = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedGlobal) ?? false
         self.customStartTime = try container.decodeIfPresent(Double.self, forKey: .customStartTime)
         self.views = try container.decodeIfPresent(Int.self, forKey: .views)
         self.feedbackDisabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackDisabled) ?? true
@@ -94,11 +79,6 @@ public struct Post: Identifiable, Hashable, Codable {
         songURL: String,
         userID: String,
         dateCreated: Timestamp,
-        releaseDate: Int? = nil,
-        ratedByUser: Bool,
-        hasBeenRatedLocal: Bool,
-        hasBeenRatedNational: Bool,
-        hasBeenRatedGlobal: Bool,
         views: Int,
         customStartTime: Double? = nil,
         feedbackDisabled: Bool = true,
@@ -116,11 +96,6 @@ public struct Post: Identifiable, Hashable, Codable {
         self.songURL = songURL
         self.userID = userID
         self.dateCreated = dateCreated
-        self.releaseDate = releaseDate
-        self.ratedByUser = ratedByUser
-        self.hasBeenRatedLocal = hasBeenRatedLocal
-        self.hasBeenRatedNational = hasBeenRatedNational
-        self.hasBeenRatedGlobal = hasBeenRatedGlobal
         self.views = views
         self.customStartTime = customStartTime
         self.feedbackDisabled = feedbackDisabled
@@ -159,10 +134,6 @@ public extension Post {
         songURL: "https://firebasestorage.googleapis.com/v0/b/global-world-2658f.appspot.com/o/mp3_files%2F00B898AB-EED9-419A-914A-02A22265D8AA.mp3?alt=media&token=55c614f5-3193-4143-babf-65093df47d53",
         userID: "oxOZlMjMvjNbboRwJFKSSQJQ6CJ2",
         dateCreated: Timestamp(date: Date()),
-        ratedByUser: false,
-        hasBeenRatedLocal: false,
-        hasBeenRatedNational: false,
-        hasBeenRatedGlobal: false,
         views: 116
     )
     
@@ -178,10 +149,6 @@ public extension Post {
         songURL: "https://firebasestorage.googleapis.com/v0/b/global-world-2658f.appspot.com/o/mp3_files%2F00B898AB-EED9-419A-914A-02A22265D8AA.mp3?alt=media&token=55c614f5-3193-4143-babf-65093df47d53",
         userID: "oxOZlMjMvjNbboRwJFKSSQJQ6CJ2",
         dateCreated: Timestamp(date: Date()),
-        ratedByUser: false,
-        hasBeenRatedLocal: false,
-        hasBeenRatedNational: false,
-        hasBeenRatedGlobal: false,
         views: 116
     )
 }

@@ -8,6 +8,10 @@
 import Foundation
 
 public class PostModel: ObservableObject {
+    public var hasBeenRatedLocal: Bool = false
+    public var hasBeenRatedNational: Bool = false
+    public var hasBeenRatedGlobal: Bool = false
+    public var ratedByUser: Bool = false
     
     public var post: Post
     
