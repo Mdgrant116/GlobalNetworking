@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 public struct Post: Identifiable, Hashable, Codable {
-    public let id: String
+    public var id: String
     public var displayName: String
     public var genre: String
     public var subGenre: String?
@@ -28,6 +28,9 @@ public struct Post: Identifiable, Hashable, Codable {
     public var hasBeenRatedNational: Bool = false
     public var hasBeenRatedGlobal: Bool = false
     public var views: Int? = 0
+    public var customStartTime: Double?
+    public var feedbackDisabled: Bool
+    public var isExplicit: Bool
     
     public enum CodingKeys: String, CodingKey {
         case id = "post-id"
@@ -43,11 +46,14 @@ public struct Post: Identifiable, Hashable, Codable {
         case userID = "user-id"
         case dateCreated = "date-created"
         case releaseDate = "release-date"
+        case customStartTime = "custom-start-time"
+        case feedbackDisabled = "feedback-disabled"
         case ratedByUser
         case hasBeenRatedLocal
         case hasBeenRatedNational
         case hasBeenRatedGlobal
         case views = "views"
+        case isExplicit = "is-explicit"
     }
     
    public init(from decoder: Decoder) throws {
@@ -55,7 +61,7 @@ public struct Post: Identifiable, Hashable, Codable {
         self.id = try container.decode(String.self, forKey: .id)
         self.displayName = try container.decode(String.self, forKey: .displayName)
         self.genre = try container.decode(String.self, forKey: .genre)
-       self.subGenre = try container.decodeIfPresent(String.self, forKey: .subGenre)
+        self.subGenre = try container.decodeIfPresent(String.self, forKey: .subGenre)
         self.songTitle = try container.decode(String.self, forKey: .songTitle)
         self.songDescription = try container.decodeIfPresent(String.self, forKey: .songDescription)
         self.locals = try container.decode(Int.self, forKey: .locals)
@@ -69,7 +75,10 @@ public struct Post: Identifiable, Hashable, Codable {
         self.hasBeenRatedLocal = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedLocal) ?? false
         self.hasBeenRatedNational = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedNational) ?? false
         self.hasBeenRatedGlobal = try container.decodeIfPresent(Bool.self, forKey: .hasBeenRatedGlobal) ?? false
+        self.customStartTime = try container.decodeIfPresent(Double.self, forKey: .customStartTime)
         self.views = try container.decodeIfPresent(Int.self, forKey: .views)
+        self.feedbackDisabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackDisabled) ?? true
+        self.isExplicit = try container.decodeIfPresent(Bool.self, forKey: .isExplicit) ?? false
     }
     
    public init(
@@ -90,11 +99,15 @@ public struct Post: Identifiable, Hashable, Codable {
         hasBeenRatedLocal: Bool,
         hasBeenRatedNational: Bool,
         hasBeenRatedGlobal: Bool,
-        views: Int
+        views: Int,
+        customStartTime: Double? = nil,
+        feedbackDisabled: Bool = true,
+        isExplicit: Bool = false
     ) {
         self.id = id
         self.displayName = displayName
         self.genre = genre
+        self.subGenre = subGenre
         self.songTitle = songTitle
         self.songDescription = songDescription
         self.locals = locals
@@ -109,6 +122,9 @@ public struct Post: Identifiable, Hashable, Codable {
         self.hasBeenRatedNational = hasBeenRatedNational
         self.hasBeenRatedGlobal = hasBeenRatedGlobal
         self.views = views
+        self.customStartTime = customStartTime
+        self.feedbackDisabled = feedbackDisabled
+        self.isExplicit = isExplicit
     }
     
     public init(dictionary: [String: Any]) {
@@ -124,7 +140,10 @@ public struct Post: Identifiable, Hashable, Codable {
         self.userID = dictionary[DatabasePostField.userID] as? String ?? ""
         self.dateCreated = dictionary[DatabasePostField.dateCreated] as? Timestamp ?? Timestamp(date: Date())
         self.views = dictionary["view-count"] as? Int ?? 0
+        self.feedbackDisabled = false
+        self.isExplicit = false
     }
+    
 }
 
 public extension Post {
