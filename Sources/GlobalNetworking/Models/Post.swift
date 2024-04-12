@@ -16,6 +16,9 @@ public struct Post: Identifiable, Hashable, Codable {
     public var subGenre: String?
     public var songTitle: String
     public var songDescription: String?
+    public var firstFeaturedArtistId: String?
+    public var secondFeaturedArtistId: String?
+    public var appleMusicLink: String?
     public var locals: Int
     public var nationals: Int
     public var globals: Int
@@ -34,6 +37,9 @@ public struct Post: Identifiable, Hashable, Codable {
         case subGenre = "sub-genre"
         case songTitle = "song-title"
         case songDescription = "song-description"
+        case firstFeaturedArtistId = "first-featured-artist-id"
+        case secondFeaturedArtistId = "second-featured-artist-id"
+        case appleMusicLink = "apple-music-link"
         case locals = "locals"
         case nationals = "nationals"
         case globals = "globals"
@@ -42,11 +48,11 @@ public struct Post: Identifiable, Hashable, Codable {
         case dateCreated = "date-created"
         case customStartTime = "custom-start-time"
         case feedbackDisabled = "feedback-disabled"
-        case views = "views"
+        case views = "view-count"
         case isExplicit = "is-explicit"
     }
     
-   public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.displayName = try container.decode(String.self, forKey: .displayName)
@@ -54,6 +60,9 @@ public struct Post: Identifiable, Hashable, Codable {
         self.subGenre = try container.decodeIfPresent(String.self, forKey: .subGenre)
         self.songTitle = try container.decode(String.self, forKey: .songTitle)
         self.songDescription = try container.decodeIfPresent(String.self, forKey: .songDescription)
+        self.firstFeaturedArtistId = try container.decodeIfPresent(String.self, forKey: .firstFeaturedArtistId)
+        self.secondFeaturedArtistId = try container.decodeIfPresent(String.self, forKey: .secondFeaturedArtistId)
+        self.appleMusicLink = try container.decodeIfPresent(String.self, forKey: .appleMusicLink)
         self.locals = try container.decode(Int.self, forKey: .locals)
         self.nationals = try container.decode(Int.self, forKey: .nationals)
         self.globals = try container.decode(Int.self, forKey: .globals)
@@ -66,13 +75,16 @@ public struct Post: Identifiable, Hashable, Codable {
         self.isExplicit = try container.decodeIfPresent(Bool.self, forKey: .isExplicit) ?? false
     }
     
-   public init(
+    public init(
         id: String,
         displayName: String,
         genre: String,
         subGenre: String? = nil,
         songTitle: String,
         songDescription: String? = nil,
+        firstFeaturedArtistId: String? = nil,
+        secondFeaturedArtistId: String? = nil,
+        appleMusicLink: String? = nil,
         locals: Int,
         nationals: Int,
         globals: Int,
@@ -90,6 +102,9 @@ public struct Post: Identifiable, Hashable, Codable {
         self.subGenre = subGenre
         self.songTitle = songTitle
         self.songDescription = songDescription
+        self.firstFeaturedArtistId = firstFeaturedArtistId
+        self.secondFeaturedArtistId = secondFeaturedArtistId
+        self.appleMusicLink = appleMusicLink
         self.locals = locals
         self.nationals = nationals
         self.globals = globals
@@ -188,7 +203,7 @@ enum Genres: String, CaseIterable, Identifiable, Equatable {
     
     var index: Self.AllCases.Index? {
         return Self.allCases.firstIndex { self == $0 }
-      }
+    }
     
     var image: String {
         switch self {
@@ -234,11 +249,11 @@ enum SubGenres: String, CaseIterable, Identifiable {
     case alternative = "Alternative"
     case dance = "Dance"
     case latin = "Latin"
-
+    
     
     var id: String { self.rawValue }
     
     var index: Self.AllCases.Index? {
         return Self.allCases.firstIndex { self == $0 }
-      }
+    }
 }
