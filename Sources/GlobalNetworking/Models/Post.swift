@@ -1,6 +1,6 @@
 //
 //  Post.swift
-//  
+//
 //
 //  Created by Michael Grant on 7/6/23.
 //
@@ -71,7 +71,7 @@ public struct Post: Identifiable, Hashable, Codable {
         self.dateCreated = try container.decode(Timestamp.self, forKey: .dateCreated)
         self.customStartTime = try container.decodeIfPresent(Double.self, forKey: .customStartTime)
         self.views = try container.decodeIfPresent(Int.self, forKey: .views)
-        self.feedbackDisabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackDisabled) ?? true
+        self.feedbackDisabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackDisabled) ?? false
         self.isExplicit = try container.decodeIfPresent(Bool.self, forKey: .isExplicit) ?? false
     }
     
@@ -141,6 +141,7 @@ public extension Post {
         id: "iKLLvvpuBs21KYKGHmKr",
         displayName: "Sza",
         genre: Genres.rb.rawValue,
+        subGenre: Genres.pop.rawValue,
         songTitle: "Nightbird",
         songDescription: "Stay the night, even if its not for real",
         locals: 0,
@@ -149,7 +150,8 @@ public extension Post {
         songURL: "https://firebasestorage.googleapis.com/v0/b/global-world-2658f.appspot.com/o/mp3_files%2F00B898AB-EED9-419A-914A-02A22265D8AA.mp3?alt=media&token=55c614f5-3193-4143-babf-65093df47d53",
         userID: "oxOZlMjMvjNbboRwJFKSSQJQ6CJ2",
         dateCreated: Timestamp(date: Date()),
-        views: 116
+        views: 116,
+        isExplicit: true
     )
     
     static let janellePhenomenal = Post(

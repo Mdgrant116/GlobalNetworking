@@ -16,27 +16,29 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
     /// The users bio and description.
     public var bio: String?
     /// Date the user joined GlobalWorld.
-    public  var dateCreated: Timestamp?
+    public var dateCreated: Timestamp?
     /// The name of the user.
     public var name: String
     /// The display name for the user that everyone will view.
-    public  var displayName: String
+    public var displayName: String
+    /// The non unique name that will be used to display artists names in the music player.
+    public var playerDisplayName: String?
     /// The amount of Dues the user has.
-    public  var dues: Int
+    public var dues: Int
     /// The users main genre.
-    public  var genre: String
+    public var genre: String
     /// The users sub genre.
-    public  var subGenre: String?
+    public var subGenre: String?
     /// The users  reported location.
-    public  var location: String?
+    public var location: String?
     /// The token used to push notifications directly to the users phone.
-    public  var pushIDToken: String?
+    public var pushIDToken: String?
     /// The first social link provided by the user.
-    public  var socialLink01: String?
+    public var socialLink01: String?
     /// The second social link provided by the user.
-    public  var socialLink02: String?
+    public var socialLink02: String?
     /// The third social link provided by the user.
-    public  var socialLink03: String?
+    public var socialLink03: String?
     /// Determines if the user has been classified Global.
     public var isGlobalUser: Bool?
     
@@ -46,6 +48,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         case dateCreated = "date-created"
         case name = "name"
         case displayName = "display-name"
+        case playerDisplayName = "player-display-name"
         case dues = "dues"
         case genre = "genre"
         case subGenre = "sub-genre"
@@ -63,6 +66,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         dateCreated: Timestamp?,
         name: String,
         displayName: String,
+        playerDisplayName: String? = nil,
         dues: Int,
         genre: String,
         subGenre: String?,
@@ -78,6 +82,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         self.dateCreated = dateCreated
         self.name = name
         self.displayName = displayName
+        self.playerDisplayName = playerDisplayName
         self.dues = dues
         self.genre = genre
         self.subGenre = subGenre
@@ -96,6 +101,7 @@ public struct GlobalUser: Identifiable, Hashable, Codable {
         self.dateCreated = try container.decodeIfPresent(Timestamp.self, forKey: .dateCreated)
         self.name = try container.decode(String.self, forKey: .name)
         self.displayName = try container.decode(String.self, forKey: .displayName)
+        self.playerDisplayName = try container.decodeIfPresent(String.self, forKey: .playerDisplayName)
         self.dues = try container.decode(Int.self, forKey: .dues)
         self.genre = try container.decode(String.self, forKey: .genre)
         self.subGenre = try container.decodeIfPresent(String.self, forKey: .subGenre)

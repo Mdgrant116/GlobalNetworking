@@ -44,10 +44,24 @@ public class PostModel: ObservableObject {
     }
     
     public var headerDescription: String {
-        if let subGenre = post.subGenre {
-            return "\(post.genre) • \(subGenre) • \(post.dateCreated.dateValue().formattedTimeString())"
+        var descriptionString = post.genre
+        
+        descriptionString.append(addToHeader(title: post.subGenre))
+        
+        if post.isExplicit {
+            descriptionString.append(addToHeader(title: "E"))
+        }
+        
+        descriptionString.append(addToHeader(title: post.dateCreated.dateValue().formattedTimeString()))
+
+        return descriptionString
+    }
+    
+    func addToHeader(title: String?) -> String {
+        if let title = title {
+            return " • \(title)"
         } else {
-            return "\(post.genre) •  \(post.dateCreated.dateValue().formattedTimeString())"
+            return ""
         }
     }
     
@@ -78,4 +92,5 @@ public class PostModel: ObservableObject {
    public init(post: Post) {
         self.post = post
     }
+
 }
