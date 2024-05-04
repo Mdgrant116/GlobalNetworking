@@ -7,12 +7,20 @@
 
 import Foundation
 
-public class PostModel: ObservableObject {
+public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
+    public static func == (lhs: PostModel, rhs: PostModel) -> Bool {
+        lhs.postId == rhs.postId
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(postId)
+    }
+    
     public var hasBeenRatedLocal: Bool = false
     public var hasBeenRatedNational: Bool = false
     public var hasBeenRatedGlobal: Bool = false
     public var ratedByUser: Bool = false
     
+    @Published public var rating: UserRatedOptions = .unrated
     public var post: Post
     
     public var postId: String {
@@ -65,6 +73,10 @@ public class PostModel: ObservableObject {
         }
     }
     
+    public var locals: Int = 0
+    public var nationals: Int = 0
+    public var globals: Int = 0
+    
     public var postViews: String {
         return "\(post.views)"
     }
@@ -89,8 +101,22 @@ public class PostModel: ObservableObject {
         return "\(post.locals + post.nationals + post.globals)"
     }
     
-   public init(post: Post) {
+    public var appleMusicLinkString: String? {
+        return post.appleMusicLink
+    }
+    
+    public init(
+        post: Post,
+        userRatedOption: UserRatedOptions = .unrated,
+        locals: Int = 0,
+        nationals: Int = 0,
+        globals: Int = 0
+    ) {
         self.post = post
+        self.rating = userRatedOption
+        self.locals = locals
+        self.nationals = nationals
+        self.globals = globals
     }
 
 }
