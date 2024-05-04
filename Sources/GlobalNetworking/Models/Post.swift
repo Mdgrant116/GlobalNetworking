@@ -19,9 +19,6 @@ public struct Post: Identifiable, Hashable, Codable {
     public var firstFeaturedArtistId: String?
     public var secondFeaturedArtistId: String?
     public var appleMusicLink: String?
-    public var locals: Int
-    public var nationals: Int
-    public var globals: Int
     public var songURL: String
     public var userID: String
     public var dateCreated: Timestamp
@@ -40,9 +37,6 @@ public struct Post: Identifiable, Hashable, Codable {
         case firstFeaturedArtistId = "first-featured-artist-id"
         case secondFeaturedArtistId = "second-featured-artist-id"
         case appleMusicLink = "apple-music-link"
-        case locals = "locals"
-        case nationals = "nationals"
-        case globals = "globals"
         case songURL = "song-url"
         case userID = "user-id"
         case dateCreated = "date-created"
@@ -63,9 +57,6 @@ public struct Post: Identifiable, Hashable, Codable {
         self.firstFeaturedArtistId = try container.decodeIfPresent(String.self, forKey: .firstFeaturedArtistId)
         self.secondFeaturedArtistId = try container.decodeIfPresent(String.self, forKey: .secondFeaturedArtistId)
         self.appleMusicLink = try container.decodeIfPresent(String.self, forKey: .appleMusicLink)
-        self.locals = try container.decode(Int.self, forKey: .locals)
-        self.nationals = try container.decode(Int.self, forKey: .nationals)
-        self.globals = try container.decode(Int.self, forKey: .globals)
         self.songURL = try container.decode(String.self, forKey: .songURL)
         self.userID = try container.decode(String.self, forKey: .userID)
         self.dateCreated = try container.decode(Timestamp.self, forKey: .dateCreated)
@@ -85,9 +76,6 @@ public struct Post: Identifiable, Hashable, Codable {
         firstFeaturedArtistId: String? = nil,
         secondFeaturedArtistId: String? = nil,
         appleMusicLink: String? = nil,
-        locals: Int,
-        nationals: Int,
-        globals: Int,
         songURL: String,
         userID: String,
         dateCreated: Timestamp,
@@ -105,9 +93,6 @@ public struct Post: Identifiable, Hashable, Codable {
         self.firstFeaturedArtistId = firstFeaturedArtistId
         self.secondFeaturedArtistId = secondFeaturedArtistId
         self.appleMusicLink = appleMusicLink
-        self.locals = locals
-        self.nationals = nationals
-        self.globals = globals
         self.songURL = songURL
         self.userID = userID
         self.dateCreated = dateCreated
@@ -123,9 +108,6 @@ public struct Post: Identifiable, Hashable, Codable {
         self.genre = dictionary[DatabasePostField.genre] as? String ?? ""
         self.songTitle = dictionary[DatabasePostField.songTitle] as? String ?? ""
         self.songDescription = dictionary[DatabasePostField.songDescription] as? String ?? ""
-        self.locals = dictionary[DatabasePostField.locals] as? Int ?? 0
-        self.nationals = dictionary[DatabasePostField.nationals] as? Int ?? 0
-        self.globals = dictionary[DatabasePostField.globals] as? Int ?? 0
         self.songURL = dictionary[DatabasePostField.songURL] as? String ?? ""
         self.userID = dictionary[DatabasePostField.userID] as? String ?? ""
         self.dateCreated = dictionary[DatabasePostField.dateCreated] as? Timestamp ?? Timestamp(date: Date())
@@ -144,9 +126,6 @@ public extension Post {
         subGenre: Genres.pop.rawValue,
         songTitle: "Nightbird",
         songDescription: "Stay the night, even if its not for real",
-        locals: 0,
-        nationals: 0,
-        globals: 0,
         songURL: "https://firebasestorage.googleapis.com/v0/b/global-world-2658f.appspot.com/o/mp3_files%2F00B898AB-EED9-419A-914A-02A22265D8AA.mp3?alt=media&token=55c614f5-3193-4143-babf-65093df47d53",
         userID: "oxOZlMjMvjNbboRwJFKSSQJQ6CJ2",
         dateCreated: Timestamp(date: Date()),
@@ -160,9 +139,6 @@ public extension Post {
         genre: Genres.rb.rawValue,
         songTitle: "Phenomenal",
         songDescription: "Bitch, say it to my face",
-        locals: 0,
-        nationals: 0,
-        globals: 0,
         songURL: "https://firebasestorage.googleapis.com/v0/b/global-world-2658f.appspot.com/o/mp3_files%2F00B898AB-EED9-419A-914A-02A22265D8AA.mp3?alt=media&token=55c614f5-3193-4143-babf-65093df47d53",
         userID: "oxOZlMjMvjNbboRwJFKSSQJQ6CJ2",
         dateCreated: Timestamp(date: Date()),
@@ -177,9 +153,6 @@ struct DatabasePostField {
     static let genre = "genre"
     static let songTitle = "song-title"
     static let songDescription = "song-description"
-    static let locals = "locals"
-    static let nationals = "nationals"
-    static let globals = "globals"
     static let postID = "post-id"
     static let coverArtURL = "cover-art-url"
     static let songURL = "song-url"

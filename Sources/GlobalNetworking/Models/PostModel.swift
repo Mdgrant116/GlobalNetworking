@@ -82,23 +82,23 @@ public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
     }
     
     public var localString: String {
-        return "\(post.locals)"
+        return "\(locals)"
     }
     
     public var nationalString: String {
-        return "\(post.nationals)"
+        return "\(nationals)"
     }
     
     public var globalString: String {
-        return "\(post.globals)"
+        return "\(globals)"
     }
     
     public var ratedCount: CGFloat {
-        return CGFloat(post.locals) + CGFloat(post.nationals) + CGFloat(post.globals)
+        return CGFloat(locals) + CGFloat(nationals) + CGFloat(globals)
     }
     
     public var ratedString: String {
-        return "\(post.locals + post.nationals + post.globals)"
+        return "\(locals + nationals + globals)"
     }
     
     public var appleMusicLinkString: String? {
