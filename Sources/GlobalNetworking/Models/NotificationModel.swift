@@ -7,18 +7,18 @@
 
 import Firebase
 
-public struct NotificationModel {
+public struct NotificationModel: Identifiable {
     public let id: String
     public var postID: String?
     public let displayName: String
     public let dateCreated: Timestamp
     public let type: Int
     public let userID: String
-    public var post: Post?
+    public var post: PostModel?
     public var isRead: Bool
     public var isSupported: Bool? = false
     
-    public init(notification: NotificationDataModel) {
+    public init(notification: NotificationDataModel, post: PostModel? = nil) {
         self.id = notification.id
         self.displayName = notification.displayName
         self.dateCreated = notification.dateCreated
@@ -26,6 +26,7 @@ public struct NotificationModel {
         self.userID = notification.userID
         self.isRead = notification.isRead
         self.postID = notification.postID
+        self.post = post
     }
     
     public func getMessageTitle() -> String {

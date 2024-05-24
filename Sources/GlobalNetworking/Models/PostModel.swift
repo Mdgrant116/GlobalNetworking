@@ -6,21 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
 public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
     public static func == (lhs: PostModel, rhs: PostModel) -> Bool {
         lhs.postId == rhs.postId
     }
+    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(postId)
     }
+
+    public var rating: UserRatedOptions
     
-    public var hasBeenRatedLocal: Bool = false
-    public var hasBeenRatedNational: Bool = false
-    public var hasBeenRatedGlobal: Bool = false
-    public var ratedByUser: Bool = false
-    
-    @Published public var rating: UserRatedOptions = .unrated
     public var post: Post
     
     public var postId: String {
@@ -51,6 +49,30 @@ public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
         return post.genre
     }
     
+    public var subGenre: String? {
+        return post.subGenre
+    }
+    
+    public var firstFeaturedArtistId: String? {
+        return post.firstFeaturedArtistId
+    }
+    
+    public var secondFeaturedArtistId: String? {
+        return post.secondFeaturedArtistId
+    }
+    
+    public var customStartTime: Double? {
+        return post.customStartTime
+    }
+    
+    public var isExplicit: Bool {
+        return post.isExplicit
+    }
+    
+    public var feedbackDisabled: Bool {
+        return post.feedbackDisabled
+    }
+    
     public var headerDescription: String {
         var descriptionString = post.genre
         
@@ -73,25 +95,18 @@ public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
         }
     }
     
-    public var locals: Int = 0
-    public var nationals: Int = 0
-    public var globals: Int = 0
+    public var locals: Int
+    public var nationals: Int
+    public var globals: Int
     
     public var postViews: String {
-        return "\(post.views)"
+        if let views = post.views {
+            return "\(views)"
+        } else {
+            return "0"
+        }
     }
-    
-    public var localString: String {
-        return "\(locals)"
-    }
-    
-    public var nationalString: String {
-        return "\(nationals)"
-    }
-    
-    public var globalString: String {
-        return "\(globals)"
-    }
+
     
     public var ratedCount: CGFloat {
         return CGFloat(locals) + CGFloat(nationals) + CGFloat(globals)
@@ -105,18 +120,28 @@ public class PostModel: Identifiable, Equatable, Hashable, ObservableObject {
         return post.appleMusicLink
     }
     
+    @Published public var songCover: UIImage
+    
     public init(
         post: Post,
         userRatedOption: UserRatedOptions = .unrated,
         locals: Int = 0,
         nationals: Int = 0,
-        globals: Int = 0
+        globals: Int = 0,
+        coverImage: UIImage = UIImage()
     ) {
         self.post = post
         self.rating = userRatedOption
         self.locals = locals
         self.nationals = nationals
         self.globals = globals
+        self.songCover = coverImage
     }
 
+}
+
+public extension PostModel {
+    struct TestingVariations {
+        public static let emptyPost = PostModel(post: Post.emptyPost)
+    }
 }

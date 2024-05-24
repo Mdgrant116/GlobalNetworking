@@ -30,6 +30,7 @@ public class RatingsService {
                 "view-count" : FieldValue.increment(Int64(1))
             ]
         )
+        logger.default("Updated view count")
     }
     
     public func fetchSongRatingValues(

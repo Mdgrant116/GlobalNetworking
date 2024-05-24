@@ -144,6 +144,8 @@ public extension Post {
         dateCreated: Timestamp(date: Date()),
         views: 116
     )
+    
+    static let emptyPost = Post(id: "", displayName: "", genre: "", songTitle: "", songURL: "", userID: "", dateCreated: Timestamp(date: Date()), views: 0)
 }
 
 struct DatabasePostField {
