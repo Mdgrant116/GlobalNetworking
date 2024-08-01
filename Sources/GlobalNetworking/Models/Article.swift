@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 public struct Article: Identifiable, Hashable, Codable {

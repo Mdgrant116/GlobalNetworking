@@ -7,7 +7,7 @@
 
 import Firebase
 import Foundation
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 public struct Post: Identifiable, Hashable, Codable {
     public var id: String

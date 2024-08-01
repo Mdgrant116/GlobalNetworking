@@ -263,7 +263,7 @@ public struct DatabaseUserField {
     
     static let providerID = "provider-id"
     static let provider = "provider"
-    static let userID = "user-id"
+    static let userID = "id"
     public static let blockedByUsers = "blocked-by-users"
     public static let blockedUsers = "blocked-users"
     

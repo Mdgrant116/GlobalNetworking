@@ -20,6 +20,8 @@ public struct DatabasePathConstants {
     static public let COLLECTION_SUPPORTING = Firestore.firestore().collection("supporting")
     static public let COLLECTION_NOTIFICATIONS = Firestore.firestore().collection("notifications")
     static public let COLLECTION_AllUsernames = Firestore.firestore().collection("all-usernames")
+    static public let COLLECTION_MESSAGE_THREADS = Firestore.firestore().collection("message-threads")
+
     
     static public let STORAGE_REF = Storage.storage().reference()
     static public let STORAGE_MP3_FILES = STORAGE_REF.child("mp3_files")
